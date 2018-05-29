@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Лунёв](https://up.htmlacademy.ru/ecmascript/5/user/315573).
-* Наставник: `Неизвестно`.
+* Наставник: [Вениамин Тамбурин](https://htmlacademy.ru/profile/id552259).
 
 ---
 
