@@ -1,38 +1,31 @@
 'use strict';
-const Pages = [...document.querySelectorAll(`template, main.central`)];
-let currentPage = 1;
+const screens = [...document.querySelectorAll(`template, main.central`)];
+let currentScreen = 1;
 
-const showPage = (pageNumber) => {
-  Pages[0].innerHTML = Pages[pageNumber].innerHTML;
+const showScreen = (screenNumber) => {
+  currentScreen = screenNumber;
+  screens[0].innerHTML = screens[screenNumber].innerHTML;
 };
 
-const increaseCurrentPage = () => {
-  currentPage++;
-  if (currentPage > Pages.length - 1) {
-    currentPage = Pages.length - 1;
-  }
-  showPage(currentPage);
+const increaseCurrentScreen = () => {
+  showScreen(Math.min(++currentScreen, screens.length - 1));
 };
 
-const decreaseCurrentPage = () => {
-  currentPage--;
-  if (currentPage < 1) {
-    currentPage = 1;
-  }
-  showPage(currentPage);
+const decreaseCurrentScreen = () => {
+  showScreen(Math.max(--currentScreen, 1));
 };
 
 document.addEventListener(`keyup`, (event) => {
   const keyName = event.key;
   switch (keyName) {
     case `ArrowLeft`:
-      decreaseCurrentPage();
+      decreaseCurrentScreen();
       break;
     case `ArrowRight`:
-      increaseCurrentPage();
+      increaseCurrentScreen();
       break;
   }
-}, false);
+});
 
 const arrowsWrapElement = document.createElement(`div`);
 arrowsWrapElement.className = `arrows__wrap`;
@@ -54,8 +47,8 @@ arrowsWrapElement.innerHTML = `<style>
 document.body.appendChild(arrowsWrapElement);
 
 document.querySelectorAll(`button.arrows__btn`)[0].addEventListener(`click`, () => {
-  decreaseCurrentPage();
-}, false);
+  decreaseCurrentScreen();
+});
 document.querySelectorAll(`button.arrows__btn`)[1].addEventListener(`click`, () => {
-  increaseCurrentPage();
-}, false);
+  increaseCurrentScreen();
+});
