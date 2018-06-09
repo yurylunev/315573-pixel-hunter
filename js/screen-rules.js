@@ -1,6 +1,8 @@
-import getElementFromTemplate from "./create-element";
+import {getElementFromTemplate, showScreen} from "./utils";
+import greeting from "./screen-greeting";
+import game1 from "./screen-game-1";
 
-const rules = getElementFromTemplate(`<header class="header">
+const rules = getElementFromTemplate(`<div><header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -23,16 +25,26 @@ const rules = getElementFromTemplate(`<header class="header">
       <input class="rules__input" type="text" placeholder="Ваше Имя">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
-  </div>
-  <footer class="footer">
-    <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
-    </div>
-  </footer>`);
+  </div></div>`);
+
+const rulesFormInput = rules.querySelector(`form>input`);
+const rulesFormButton = rules.querySelector(`form>button`);
+
+rulesFormInput.addEventListener(`keyup`, () => {
+  if (rulesFormInput.value) {
+    rulesFormButton.removeAttribute(`disabled`);
+  } else {
+    rulesFormButton.setAttribute(`disabled`, `true`);
+  }
+
+});
+
+(rules.querySelector(`button.continue`)).addEventListener(`click`, () => {
+  showScreen(game1);
+});
+
+(rules.querySelector(`button.back`)).addEventListener(`click`, () => {
+  showScreen(greeting);
+});
 
 export default rules;

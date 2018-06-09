@@ -1,6 +1,8 @@
-import getElementFromTemplate from "./create-element";
+import {getElementFromTemplate, showScreen} from "./utils";
+import greeting from "./screen-greeting";
+import game3 from "./screen-game-3";
 
-const game2 = getElementFromTemplate(`<header class="header">
+const game2 = getElementFromTemplate(`<div><header class="header">
     <div class="header__back">
       <button class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -44,15 +46,17 @@ const game2 = getElementFromTemplate(`<header class="header">
       </ul>
     </div>
   </div>
-  <footer class="footer">
-    <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
-    </div>
-  </footer>`);
+  </div>`);
+
+const radios = Array.from(game2.querySelectorAll(`input[type=radio]`));
+radios.forEach((radio) => {
+  radio.addEventListener(`click`, () => {
+    showScreen(game3);
+  });
+});
+
+(game2.querySelector(`button.back`)).addEventListener(`click`, () => {
+  showScreen(greeting);
+});
 
 export default game2;
