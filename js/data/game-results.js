@@ -7,9 +7,8 @@ export const gameResults = (answers = [], lives = 0) => {
       return result + sum;
     }, 0);
     return score + lives * 50;
-  } else {
-    return -1;
   }
+  return -1;
 };
 
 export default gameResults;
